@@ -4,11 +4,11 @@ import numpy as np
 from tqdm import tqdm
 
 # 原始路径
-root_dir = "/Users/yushen/Desktop/Mural512_processed"
+root_dir = r"C:\Users\huiwe\Desktop\DeepImageRestoration\preprocessing\Mural512_processed"
 split_dirs = ['train', 'val', 'test']
 
 # 输出路径
-output_root = "/Users/yushen/Desktop/Mural512"
+output_root = r"C:\Users\huiwe\Desktop\DeepImageRestoration"
 
 # 创建输出文件夹
 for split in split_dirs:
@@ -55,4 +55,4 @@ for split in split_dirs:
         Image.fromarray(gt_np).save(os.path.join(output_root, split, 'ground_truth', filename))
         Image.fromarray(damaged_np.astype(np.uint8)).save(os.path.join(output_root, split, 'damaged', filename))
 
-print("✅ Dataset generation complete.")
+print("Dataset generation complete.")
