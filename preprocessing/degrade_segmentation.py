@@ -3,7 +3,8 @@ from resize_utils import resize_folder
 
 # Settings
 target_size = (256, 256)  # target downscaled resolution
-root_in = "../MuralDH/Mural_seg"  # original path
+# root_in = "../MuralDH/Mural_seg"  # original path
+root_in = "MuralDH\Mural_seg"
 root_out = "Mural_seg_downscaled" # output path, in current preprocessing dir
 
 # Resize train split
