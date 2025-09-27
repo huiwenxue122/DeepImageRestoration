@@ -17,11 +17,11 @@ It combines multiple complementary components to balance pixel-level accuracy, s
 - Measures **structural similarity** between restored and ground-truth images.  
 - More consistent with human visual perception compared to L1/MSE.  
 - Formula:  
+  ![SSIM Formula](https://latex.codecogs.com/png.latex?SSIM(x,y)=\frac{(2\mu_x\mu_y+C_1)(2\sigma_{xy}+C_2)}{(\mu_x^2+\mu_y^2+C_1)(\sigma_x^2+\sigma_y^2+C_2)})  
 
-  \[
-  SSIM(x,y) = \frac{ (2\mu_x \mu_y + C_1)(2\sigma_{xy} + C_2) }
-  { (\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2) }
-  \]
+  (Plain text version for GitHub preview:)  
+  `SSIM(x,y) = ((2 * μx * μy + C1) * (2 * σxy + C2)) / ((μx^2 + μy^2 + C1) * (σx^2 + σy^2 + C2))`
+
 
 - Reference:  
   > Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P. (2004).  
