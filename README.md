@@ -70,5 +70,50 @@ Default weights:
 - **SSIM**: preserves structure  
 - **Perceptual**: maintains semantic meaning  
 - **Edge-aware**: enhances fine details  
-
 This makes it especially suitable for **mural restoration**, where both **visual fidelity** and **structural consistency** are crucial.
+
+## Phase 1: Freeze Encoder, Train Decoder Only
+
+### Training Setup
+- **Goal**: Fine-tune the decoder on the Mural dataset while keeping the encoder frozen (feature extractor remains fixed).
+- **Configuration**:
+  - Optimizer: **Adam** with cosine annealing learning rate scheduler
+  - Loss: Weighted combination of **L1 + SSIM + Perceptual Loss**
+  - Batch size: **8**
+  - Image size: **256 × 256**
+  - Initial learning rate: **1e-4**
+  - Epochs: **50** (with early stopping, patience = 5)
+
+### Training Process
+- The encoder parameters were frozen during this stage.
+- Only the decoder parameters were updated.
+- Both training and validation metrics (Loss, PSNR) were monitored with TensorBoard.
+
+### Results
+- Training stopped at **epoch 40** due to early stopping.
+- **Best model performance**:
+  - Train Loss ≈ **0.22**
+  - Validation Loss ≈ **0.24**
+  - Train PSNR ≈ **23.1 dB**
+  - Validation PSNR ≈ **21.5 dB**
+
+### Visualization
+Training and validation curves:
+
+#### Loss
+![Phase1 Loss](images/phase1_loss.png)
+
+#### PSNR
+![Phase1 PSNR](images/phase1_psnr.png)
+
+### Conclusion
+- The model shows clear convergence: training and validation losses decrease steadily, while PSNR increases.
+- Validation PSNR reached **21.5 dB**, showing noticeable improvement over the initial state.
+- This phase successfully adapted the decoder. The next step will be **Phase 2: Unfreeze encoder and fine-tune the whole model**.
+
+
+
+
+
+
+
