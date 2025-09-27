@@ -1,4 +1,4 @@
-![poster](Images/ProjectFinal_PosterTemplate.pptx.png).
+![poster](Images/ProjectFinal_PosterTemplate.pptx.png)
 Here is the wrokflow of DunHuang Mural Restoration process:
 ![alt text](https://github.com/rili0214/Dunhuang/blob/main/Images/Workflow.png)
 
