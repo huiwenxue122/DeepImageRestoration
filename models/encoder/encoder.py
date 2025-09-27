@@ -9,10 +9,10 @@ Key components:
 - SwinEncoderExtractor: Wrapper for Swin-v2-Base that extracts multi-level features
 - Feature scale management: Handles the progressive downsampling and feature extraction
 - Output feature dimensions:
-  * Stage 1: 64×64×96   (fine details, brushstrokes, textures)
-  * Stage 2: 32×32×192  (medium structures, patterns)
-  * Stage 3: 16×16×384  (semantic information)
-  * Stage 4: 8×8×768    (global context)
+  * Stage 1: 64×64×128   (fine details, brushstrokes, textures)
+  * Stage 2: 32×32×256  (medium structures, patterns)
+  * Stage 3: 16×16×512  (semantic information)
+  * Stage 4: 8×8×1024    (global context)
 
 Usage:
     encoder = SwinEncoderExtractor(pretrained=True)
@@ -114,10 +114,10 @@ class SwinEncoderExtractor(nn.Module):
         
         Returns:
             Dict[str, torch.Tensor]: Dictionary of feature maps at different scales:
-                - 'stage1': [B, 96, 64, 64]
-                - 'stage2': [B, 192, 32, 32]
-                - 'stage3': [B, 384, 16, 16]
-                - 'stage4': [B, 768, 8, 8]
+                - 'stage1': [B, 128, 64, 64]
+                - 'stage2': [B, 256, 32, 32]
+                - 'stage3': [B, 512, 16, 16]
+                - 'stage4': [B, 1024, 8, 8]
         """
         assert x.shape[2:] == (256, 256)
         x = self.patch_embed(x)  # -> [B, H, W, C] (BHWC)
