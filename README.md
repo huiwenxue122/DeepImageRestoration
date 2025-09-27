@@ -100,7 +100,7 @@ This makes it especially suitable for **mural restoration**, where both **visual
 ### Visualization
 Training and validation curves:
 
-![Phase1 Loss](images/phase1.png)
+![Phase1](images/phase1.png)
 
 ### Conclusion
 - The model shows clear convergence: training and validation losses decrease steadily, while PSNR increases.
