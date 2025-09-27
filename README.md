@@ -50,13 +50,11 @@ It combines multiple complementary components to balance pixel-level accuracy, s
 
 The final loss is a weighted combination:
 
-\[
-\mathcal{L}_{\text{total}} =
-\lambda_{1}\,\mathcal{L}_{L1} +
-\lambda_{2}\,\mathcal{L}_{SSIM} +
-\lambda_{3}\,\mathcal{L}_{Perceptual} +
-\lambda_{4}\,\mathcal{L}_{Edge}
-\]
+![Total Loss](https://latex.codecogs.com/png.latex?\mathcal{L}_{total}=\lambda_1\mathcal{L}_{L1}+\lambda_2\mathcal{L}_{SSIM}+\lambda_3\mathcal{L}_{Perceptual}+\lambda_4\mathcal{L}_{Edge})
+
+(Plain text version:)  
+`L_total = λ1 * L1 + λ2 * L_SSIM + λ3 * L_Perceptual + λ4 * L_Edge`
+
 
 Default weights:
 - `l1_weight = 1.0`  
