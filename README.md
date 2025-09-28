@@ -108,6 +108,45 @@ Training and validation curves:
 - Validation PSNR reached **21.5 dB**, showing noticeable improvement over the initial state.
 - This phase successfully adapted the decoder. The next step will be **Phase 2: Unfreeze encoder and fine-tune the whole model**.
 
+## Phase 2A: Fine-tuning with Unfrozen Encoder Stage4
+
+In this step, we partially fine-tuned the model by **unfreezing the last stage (stage4) of the encoder** while keeping the earlier encoder layers frozen.  
+This allows the model to adapt deeper encoder features to the mural dataset, while avoiding the instability of full fine-tuning.
+
+### Training Setup
+- **Dataset:** Mural dataset  
+- **Image size:** 512 × 512  
+- **Batch size:** 8  
+- **Epochs:** 60 (early stopped at epoch 51)  
+- **Optimizer:** Adam (lr = 1e-3 with CosineAnnealingLR scheduler)  
+- **Loss Function:** Combination of L1, SSIM, Perceptual, and Edge losses  
+- **Hardware:** CUDA backend  
+
+### Results
+- **Best PSNR (train):** 24.27 dB  
+- **Best PSNR (val):** 22.63 dB  
+- **Final Epoch:** 51 (early stopping triggered after 8 epochs without PSNR improvement)  
+
+### Training Curves
+Below are the training and validation curves for **loss** and **PSNR** during Phase 2A:
+
+![Phase 2A Training Results](images/phase2.png)
+
+From the curves:
+- Both training and validation loss decreased steadily.  
+- PSNR improved compared to Phase 1, but still leaves room for further improvement when fine-tuning the **entire encoder** (Phase 2B).
+
+---
+
+## Comparison with Phase 1
+| Phase   | Encoder Status       | Best Train PSNR | Best Val PSNR |
+|---------|---------------------|-----------------|---------------|
+| Phase 1 | Encoder frozen       | ~23.18 dB       | ~21.46 dB     |
+| Phase 2A| Stage4 unfrozen only | **24.27 dB**    | **22.63 dB**  |
+
+➡ Next step: **Phase 2B** (fine-tune the full encoder + decoder) to further improve performance.
+
+
 
 
 
