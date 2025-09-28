@@ -130,7 +130,7 @@ This allows the model to adapt deeper encoder features to the mural dataset, whi
 ### Training Curves
 Below are the training and validation curves for **loss** and **PSNR** during Phase 2A:
 
-![Phase 2A Training Results](images/phase2.png)
+![Phase 2A Training Results](Images/phase2.png)
 
 From the curves:
 - Both training and validation loss decreased steadily.  
