@@ -146,7 +146,56 @@ From the curves:
 
 ➡ Next step: **Phase 2B** (fine-tune the full encoder + decoder) to further improve performance.
 
+## Phase 2B — Full Model Fine-tuning (All Encoder Stages Unfrozen)
 
+This experiment fine-tunes the **entire network** (encoder stages 1–4 + decoder), starting from the Phase 2A best checkpoint.
+
+### Training Configuration
+- **Command**
+  ```bash
+  python -m models.efficient_models.train \
+      --data_path ./Mural \
+      --image_size 256 \
+      --batch_size 8 \
+      --epochs 50 \
+      --lr 3e-5 --min_lr 1e-6 \
+      --num_workers 0 \
+      --l1_weight 1.0 --ssim_weight 0.5 --perceptual_weight 0.1 --edge_weight 0.2 \
+      --unfreeze_encoder_stages stage1 stage2 stage3 stage4 \
+      --best_weights ./output_phase2/stage4/checkpoints/best_model.pth \
+      --output_dir ./output_phase2/full \
+      --patience 10 \
+      --grad_clip 1.0
+
+  
+Optimizer / Scheduler: Adam + CosineAnnealingLR
+
+Loss: L1 + SSIM + Perceptual + Edge
+
+Results (50 epochs, no early stopping)
+
+Best Validation PSNR: 23.80 dB (achieved before epoch 50)
+
+Validation PSNR at epoch 50: 23.79 dB
+
+Validation Loss at epoch 50: ~0.1692
+
+Training PSNR at epoch 50: ~25.74 dB
+
+Training Loss at epoch 50: ~0.1544
+
+Note: We report the best validation PSNR (23.80 dB) for model selection, which may occur before the final epoch.
+
+Curves
+![Phase 2B Training Results](Images/phase2B.png)
+
+Observations
+
+Both train and validation losses steadily decreased over the 50 epochs.
+
+Validation PSNR improved from ~22.6 dB in Phase 2A to 23.8 dB in Phase 2B, confirming the benefit of full-model fine-tuning.
+
+The gap between train (≈25.7 dB) and validation (≈23.8 dB) PSNR is expected and indicates normal generalization behavior.
 
 
 
