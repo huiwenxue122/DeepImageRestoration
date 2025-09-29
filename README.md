@@ -197,7 +197,11 @@ Validation PSNR improved from ~22.6 dB in Phase 2A to 23.8 dB in Phase 2B, confi
 
 The gap between train (≈25.7 dB) and validation (≈23.8 dB) PSNR is expected and indicates normal generalization behavior.
 
-
+Summary of Results
+Phase	Encoder Training	Best Val PSNR (dB)	Final Epochs	Notes
+Phase 1	Frozen (Decoder only)	21.48	40 (early stopped)	Decoder adaptation
+Phase 2A	Unfreeze Stage 4	22.63	51 (early stopped)	Partial fine-tuning
+Phase 2B	Unfreeze All (1–4)	23.80	50	Full model fine-tuning
 
 
 
