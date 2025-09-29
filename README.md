@@ -203,6 +203,10 @@ Phase 1	Frozen (Decoder only)	21.48	40 (early stopped)	Decoder adaptation
 Phase 2A	Unfreeze Stage 4	22.63	51 (early stopped)	Partial fine-tuning
 Phase 2B	Unfreeze All (1–4)	23.80	50	Full model fine-tuning
 
+Test completed on 765 images.
+  • Average PSNR: 24.51 dB
+  • Average SSIM: 0.8843
+Test samples saved to: .\output_phase2\full_test\test_samples
 
 
 
